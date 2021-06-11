@@ -22,9 +22,12 @@
         $vtipo = explode("/", $vetor_foto['type']);
         $tipo = $vtipo[0] ?? '';
         $ext = $vtipo[1] ?? '';
-        if ((!$vetor_foto['error']) and ($tipo == "image") ) {
+        if ($ext == 'x-zip-compressed') {
+          $ext = 'zip';
+        }
+        if ((!$vetor_foto['error'])) {
             $nome_arquivo = date('Ymdhms'). "." . $ext;
-            move_uploaded_file($vetor_foto['tmp_name'], "image/".$nome_arquivo);
+            move_uploaded_file($vetor_foto['tmp_name'], "midias/".$nome_arquivo);
             return $nome_arquivo;
         }
     }
@@ -34,27 +37,7 @@
         $data_escreve = $d[2] . "/".$d[1]. "/". $d[0];
         return $data_escreve;
     }
-
-
-    function hora_soma ($hora1, $hora2) {
-      $h1 = explode(':', $hora1);
-      $h2 = explode(':', $hora2);
-      $hoF = $h1[0] + $h2[0];
-      $minF = $h1[1] + $h2[1];
-      $segF = $h1[2] + $h2[2];
-      if (($hoF == 8) or ($hoF == 9)) {
-        $hora_escreve = "0".$hoF . ":".$minF. ":". $segF. "0";
-        } else if ($minF == 0) {
-          $hora_escreve = $hoF . ":". "0".$minF. ":". $segF. "0";
-        } else if (($minF == 0) AND ($hoF == 8) or ($hoF == 9)) {
-          $hora_escreve = "0".$hoF . ":". "0".$minF. ":". $segF. "0";
-        }
-        else{
-        $hora_escreve = $hoF . ":".$minF. ":". $segF. "0";
-        }
-
-      return $hora_escreve;
-    }    
+    
 
 
 ?>

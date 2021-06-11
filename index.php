@@ -170,82 +170,178 @@
   </div>
   
     <div id="formulario" class="text-muted">
-    <form class="p-3 container mt-4">
+    <form class="p-3 container mt-4" action="cadastro_denuncia_scripts.php" method="POST" enctype="multipart/form-data">
 
        <h3 class="p-5">Fazer Denúncia</h3>
 
         <div class="form-row">
         <div class="form-group col-md-6 p-3">
-          <label class="form-label" for="inputAddress">Endereço</label>
-          <input type="text" class="form-control text-muted" id="inputAddress" placeholder="Rua X, nº 0">
+          <label class="form-label" for="endereco">Endereço</label>
+          <input type="text" class="form-control text-muted" name="endereco" placeholder="Rua X, nº 0" required>
         </div>
         </div>
 
         <div class="form-row">
         <div class="form-group col-md-6 p-3">
-          <label class="form-label" for="inputCidade">Cidade do DF</label>
-          <select id="inputCidade" class="form-control text-muted">
-            <option selected>Escolher...</option>
-            <option>...</option>
+          <label class="form-label" for="cidade">Cidade do DF</label>
+          <select name="cidade" class="form-control text-muted" required>
+            <option value="" disabled selected >Escolher</option>
+                            <option value="Águas Claras (RA XX)">Águas Claras (RA XX)</option>
+                            <option value="Arniqueira (RA XXXIII)">Arniqueira (RA XXXIII)</option>
+                            <option value="Brazlândia (RA IV)">Brazlândia (RA IV)</option>
+                            <option value="Candangolândia (RA XIX)">Candangolândia (RA XIX)</option>
+                            <option value="Ceilândia (RA IX)">Ceilândia (RA IX)</option>
+                            <option value="Cruzeiro (RA XI)">Cruzeiro (RA XI)</option>
+                            <option value="Fercal (RA XXXI)">Fercal (RA XXXI)</option>
+                            <option value="Gama (RA II)">Gama (RA II)</option>
+                            <option value="Guará (RA X)">Guará (RA X)</option>
+                            <option value="Itapoã (RA XXVIII)">Itapoã (RA XXVIII)</option>
+                            <option value="Jardim Botânico (RA XXVII)">Jardim Botânico (RA XXVII)</option>
+                            <option value="Lago Norte (RA XVIII)">Lago Norte (RA XVIII)</option>
+                            <option value="Lago Sul (RA XVI)">Lago Sul (RA XVI)</option>
+                            <option value="Núcleo Bandeirante (RA VIII)">Núcleo Bandeirante (RA VIII)</option>
+                            <option value="Paranoá (RA VII)">Paranoá (RA VII)</option>
+                            <option value="Park Way (RA XXIV)">Park Way (RA XXIV)</option>
+                            <option value="Planaltina (RA VI)">Planaltina (RA VI)</option>
+                            <option value="Plano Piloto (RA I)">Plano Piloto (RA I)</option>
+                            <option value="Recanto das Emas (XV)">Recanto das Emas (XV)</option>
+                            <option value="Riacho Fundo (RA XVII)">Riacho Fundo (RA XVII)</option>
+                            <option value="Riacho Fundo II (RA XXI">Riacho Fundo II (RA XXI)</option>
+                            <option value="Samambaia (RA XII)">Samambaia (RA XII)</option>
+                            <option value="Santa Maria (RA XIII)">Santa Maria (RA XIII)</option>
+                            <option value="São Sebastião (RA XIV)">São Sebastião (RA XIV)</option>
+                            <option value="SCIA/Estrutural (RA XXV)">SCIA/Estrutural (RA XXV)</option>
+                            <option value="SIA (RA XXIX)">SIA (RA XXIX)</option>
+                            <option value="Sobradinho (RA V)">Sobradinho (RA V)</option>
+                            <option value="Sobradinho II (RA XXVI)">Sobradinho II (RA XXVI)</option>
+                            <option value="Sol Nascente e Pôr do Sol ( RA XXXII)">Sol Nascente e Pôr do Sol ( RA XXXII)</option>
+                            <option value="Sudoeste/Octogonal (RA XXII)">Sudoeste/Octogonal (RA XXII)</option>
+                            <option value="Taguatinga (RA III)">Taguatinga (RA III)</option>
+                            <option value="Varjão (RA XXIII)">Varjão (RA XXIII)</option>
+                            <option value="Vicente Pires (RA XXX)">Vicente Pires (RA XXX)</option>
           </select>
         </div>
         <div class="form-group col-md-6 p-3">
-          <label class="form-label" for="inputCEP">CEP</label>
-           <input type="text" class="form-control text-muted" id="inputCEP" placeholder="00000-000">
+          <label class="form-label" for="cep">CEP</label>
+           <input type="text" class="form-control text-muted" name="cep" placeholder="00000-000" required>
         </div>
         <div class="form-group col-md-6 p-3">
-          <label class="form-label" for="inputNomeLocal">Nome do local ou Estabelecimento</label>
-          <input type="text" class="form-control text-muted" id="inputNomeLocal" placeholder="Restaurante, loja ...">
+          <label class="form-label" for="nomeLocal">Nome do local ou Estabelecimento</label>
+          <input type="text" class="form-control text-muted" name="nomeLocal" placeholder="Restaurante, loja ...">
         </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6 p-3">
-            <label class="form-label" for="inputAgressor">Relação com o Agressor</label>
-            <select id="inputAgressor" class="form-control text-muted">
-              <option selected>Escolher...</option>
-              <option>...</option>
+            <label class="form-label" for="agressor">Relação com o Agressor</label>
+            <select name="agressor" class="form-control text-muted" required>
+              <option value="" disabled selected >Escolher</option>
+              <option>Companheiro(a)</option>
+              <option>Pai/Mãe</option>
+              <option>Parente (relação familiar)</option>
+              <option>Colega de trabalho</option>
+              <option>Amigo(a)/Conhecido(a)</option>
+              <option>Desconhecido(a)</option>
             </select>
           </div>
           <div class="form-group col-md-6 p-3">
-            <label class="form-label" for="inputTipoDenuncia">Tipo de Denúncia</label>
-            <select id="inputTipoDenuncia" class="form-control text-muted">
-              <option selected>Escolher...</option>
-              <option>...</option>
+            <label class="form-label" for="tipo_denuncia_d">Tipo de Denúncia</label>
+            <small class="text-muted">Inserrir opção que melhor representa a sua denúncia</small>
+            <select name="tipo_denuncia_d" class="form-control text-muted" required>
+            <option value="" disabled selected >Escolher</option>
+            <?php 
+                include "conexao.php";
+
+                date_default_timezone_set('America/Sao_Paulo');
+                $hoje = date('Y-m-d');
+
+
+                $sql = "SELECT * FROM tipo_denuncia";
+                $dados = mysqli_query($conn, $sql);
+
+
+              while ($linha = mysqli_fetch_assoc($dados)) { 
+                $desTipoDenuncia = $linha['desTipoDenuncia'];
+               ?> <option value="<?php echo $linha['idTipoDenuncia']; ?>"> <?php echo "$desTipoDenuncia"; ?> </option> <?php
+              }
+                
+            ?>
+
             </select>
           </div>
           <div class="form-group col-md-6 p-3">
-            <label class="form-label" for="inputTipoViolencia">Tipo de Violência</label>
-            <select id="inputTipoViolencia" class="form-control text-muted">
-              <option selected>Escolher...</option>
-              <option>...</option>
+            <label class="form-label" for="tipo_violencia_d">Tipo de Violência</label>
+            <small class="text-muted">Inserrir opção que melhor representa a sua denúncia</small>
+            <select name="tipo_violencia_d" class="form-control text-muted" required>
+            <option value="" disabled selected >Escolher</option>
+            <?php 
+               
+                $sql = "SELECT * FROM tipo_violencia";
+                $dados = mysqli_query($conn, $sql);
+
+
+              while ($linha = mysqli_fetch_assoc($dados)) { 
+                $desTipoViolencia = $linha['desTipoViolencia'];
+               ?> <option value="<?php echo $linha['idViolencia']; ?>"> <?php echo "$desTipoViolencia"; ?> </option> <?php
+              }
+                
+            ?>
             </select>
           </div>
           <div class="form-group col-md-6 p-3">
-            <label class="form-label" for="inputTipoCrime">Tipo de Crime</label>
-            <select id="inputTipoCrime" class="form-control text-muted">
-              <option selected>Escolher...</option>
-              <option>...</option>
+            <label class="form-label" for="tipo_crime_d">Tipo de Crime</label>
+            <small class="text-muted">Inserrir opção que melhor representa a sua denúncia</small>
+            <select name="tipo_crime_d" class="form-control text-muted" required>
+            <option value="" disabled selected >Escolher</option>
+            <?php 
+               
+                $sql = "SELECT * FROM tipo_crime";
+                $dados = mysqli_query($conn, $sql);
+
+
+              while ($linha = mysqli_fetch_assoc($dados)) { 
+                $desTipoCrime = $linha['desTipoCrime'];
+               ?> <option value="<?php echo $linha['idCrime']; ?>"> <?php echo "$desTipoCrime"; ?> </option> <?php
+              }
+                
+            ?>
             </select>
           </div>
 
         <div class="form-group col-md-6 p-3">
-          <label class="form-label" for="inputDetalhes">Detalhes</label>
-          <textarea class="form-control text-muted" id="inputDetalhes" rows="4"></textarea>
+          <label class="form-label" for="detalhes">Detalhes</label>
+          <textarea class="form-control text-muted char-count" maxlength="800" name="detalhes" rows="4" required></textarea>
+          <p class="text-muted"><small><span name="detalhes">800</span></small> caracteres restantes.</p>
         </div>
         <div class="form-group col-md-6 p-3">
-          <label for="inputFotoVideo" class="form-label">Inserir prova em foto ou vídeo (selecione todos os arquivos que deseja enviar)</label>
-          <input class="form-control text-muted" type="file" id="inputFotoVideo" multiple>
+          <label for="midia" class="form-label">Inserir prova em foto ou vídeo (selecione todos os arquivos que deseja enviar)</label>
+          <small>Se for inserir mais de um arquivo, enviar pasta ZIP com todos os arquivos desejados.</small>
+          <input class="form-control text-muted" type="file" name="midia">
         </div>
         
         </div>
         <div class="row">
           <div class="col-6 text-center mt-3">
+            <input type="hidden" name="data" value="<?php echo $hoje; ?>">
             <button type="submit" class="btn btn-dark mx-3 mt-3">Fazer Denúncia!</button>
           </div>
         </div>
       </form>
     </div>
+
+    <script src="http://code.jquery.com/jquery-1.5.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+      $('.char-count').keyup(function() {
+          var maxLength = parseInt($(this).attr('maxlength')); 
+          var length = $(this).val().length;
+          var newLength = maxLength-length;
+          var name = $(this).attr('name');
+          $('span[name="'+name+'"]').text(newLength);
+            });
+        });
+        
+    </script>
 
 
       <footer id="rodape" class="container-fluid bg-dark text-light">

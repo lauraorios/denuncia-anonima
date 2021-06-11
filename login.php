@@ -106,11 +106,12 @@
                 $num_registros = mysqli_num_rows($result);
                 if ($num_registros == 1) {
                   $linha = mysqli_fetch_assoc($result);
+                  $idAdministrador = $linha['idAdm'];
 
 
                 if (($emailLogin == $linha['emailAdm']) and ($senhaLogin == $linha['senha'])) {
                 session_start();
-                $_SESSION['emailLogin'] = "Administrador";
+                $_SESSION['emailLogin'] = $idAdministrador;
                 header("location: adm.php");
                 } else{
                 echo "Login Inválido!";
@@ -124,7 +125,17 @@
             }
           ?>
       </div>
-      <div class="col-3"></div>
+         <div class="col-3">
+           <div class="card" >
+              <div class="card-body text-center text-muted">
+                <h5 class="card-title">Login para Administrador</h5>
+                
+                <p class="card-text mt-3">E-mail: admin@admin.com </p>
+                <p class="card-text">Senha: adminn</p>
+                
+              </div>
+            </div>
+         </div>
     </div>
   </div>
   <div class="container text-end">

@@ -105,6 +105,14 @@ include "validar.php";
   </div>
 
 
+  <div class="container text-center">
+    <div class="row">
+     
+      <div class="col-6"><a href="crud_denuncia.php" class="btn btn-success mx-5 mt-5">Ver Denúncias Cadastradas</a></div>
+      <div class="col-6 text-end"><a href="gerenciarPerfil.php" class="btn btn-primary mx-5 mt-5">Gerenciar Perfil</a></div>
+    </div>
+  </div>
+
   <div class="container p-5" id="tipoViolencia">
     <div class="row"> 
       <div class="col-6">  
@@ -186,7 +194,7 @@ include "validar.php";
           <h3 class="py-5 px-5 text-muted">Cadastrar Novo Administrador</h3>
         </div>
         <div class="col-6 text-end">
-          <a href="crud_administrador.php" class="btn btn-secondary mx-5 mt-5">Ver administradores cadastradas</a>
+          <a href="crud_administrador.php" class="btn btn-secondary mx-5 mt-5">Ver administradores cadastrados</a>
         </div>
       </div>
 

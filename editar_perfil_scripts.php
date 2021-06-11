@@ -41,10 +41,12 @@ include "validar.php";
         text-align: center;
         margin-top: 90px;
         padding: 10px;
+        position: absolute;
+        bottom:0;
       }
 
     </style>
- 
+
     <title>Administrador - DENÚNCIA ANÔNIMA</title>
   </head>
   <body>
@@ -81,60 +83,47 @@ include "validar.php";
 
           include "conexao.php";
 
-          $iddAdm = $_GET['idAdm'] ?? '';
+          $iddAdm = $_POST['iddAdm'];
+          $nomeAdm = $_POST['nomeAdm'];
+          $funcao = $_POST['funcao'];
+          $emailAdm = $_POST['emailAdm'];
 
-          $sql = "SELECT * FROM administrador WHERE idAdm = $iddAdm";
+          if ($_POST['senha1'] != null) {
+            $senhanova = md5($_POST['senha1']);
+            
+          } else {
+            $senhanova = $_POST['senha'];
+          }
 
-          $dados = mysqli_query($conn, $sql);
 
-          $linha = mysqli_fetch_assoc($dados);
-             
+
+          $sql = "UPDATE `administrador` set `nomeAdm` = '$nomeAdm', `emailAdm` = '$emailAdm',  `funcao` = '$funcao', `senha` = '$senhanova' WHERE idAdm = $iddAdm";
+
+          if(mysqli_query($conn, $sql)){
+            mensagem("Alteração feita com sucesso!", 'success');
+
+          } else
+            mensagem("Erro ", 'danger');
+
         ?>
 
       </div>
-
-  </div>
-
-
-  <div class="container">
-    <div class="row">   
-      <div class="col-10">
-        <h3 class="p-5 text-muted">Alterar Dados do Administrador</h3>
-      </div>
-      <div class="col-2 p-5">
-        <a href="crud_administrador.php" class="btn btn-dark">Retornar</a>
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6 text-end mt-2">
+          <a href="gerenciarPerfil.php" class="btn btn-dark">Retornar</a>
+        </div>
       </div>
     </div>
-      <form class="p-3 mt-4" action="editar_administrador_scripts.php" method="POST" >
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="nomeAdm">Nome</label>
-          <input type="text" class="form-control text-muted" name="nomeAdm" required value="<?php echo $linha['nomeAdm']; ?>">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="funcao">Função</label>
-          <input type="text" class="form-control text-muted" name="funcao" required value="<?php echo $linha['funcao']; ?>">
-        </div>   
-      </div>
-        <div class="row">
-          <div class="col-6 text-center mt-3">
-            <button type="submit" class="btn btn-dark mx-3 mt-3">Alterar Administrador</button>
-            <input type="hidden" name="iddAdm" value="<?php echo $linha['idAdm']; ?>">
-          </div>
-        </div>
-    </form>
-  </div>
 
 
   
+  <footer id="rodape" class="footer navbar-fixed-bottom bg-dark text-light container-fluid">
+    <p>&copy; 2021 - Todos os Direitos Reservados :: Desenvolvido por Laura Rios</p>
+  </footer>
 
-    <footer id="rodape" class=" bg-dark text-light container-fluid">
-        <p>&copy; 2021 - Todos os Direitos Reservados :: Desenvolvido por Laura Rios</p>
-    </footer>
+  <script src="js/bootstrap.bundle.min.js"></script>
 
-    <script src="js/bootstrap.bundle.min.js"></script>
 
   </body>
-
-
 </html>

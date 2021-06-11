@@ -1,6 +1,3 @@
-<?php 
-include "validar.php";
- ?>
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -13,24 +10,8 @@ include "validar.php";
 
     <style type="text/css">
 
-      .b {
-        padding-left: 120px; 
-      }
-      .a {
-        padding-left: 70px; 
-      }
-      #formulario{
-        background-color: rgba(176,196,222, 0.3);
-      }
-
-      #sobre{
-        text-align: justify;
-      }
-
-      .carousel-inner img {
-
-        width: 100%;
-        height: 530px; 
+      .nav-item {
+        padding-left: 140px; 
       }
 
       .fa-hand-paper, .fa-user{
@@ -43,11 +24,12 @@ include "validar.php";
         padding: 10px;
         position: absolute;
         bottom:0;
+
       }
 
     </style>
 
-    <title>Administrador - DENÚNCIA ANÔNIMA</title>
+    <title>Denúncia Anônima </title>
   </head>
   <body>
   <nav class="navbar mb-4 navbar-expand-lg navbar-dark bg-dark">
@@ -58,17 +40,17 @@ include "validar.php";
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item b">
+          <li class="nav-item">
             <a class="nav-link" href="index.php#sobre">Sobre Nós</a>
           </li>
-          <li class="nav-item b">
+          <li class="nav-item">
             <a class="nav-link" href="index.php#tipos">Tipos de denúncia</a>
           </li>
-          <li class="nav-item b">
+          <li class="nav-item">
             <a class="nav-link" href="index.php#formulario">Faça sua Denúncia</a>
           </li>
-          <li class="nav-item b">
-            <a class="nav-link"  href="sair.php">Sair <i class="fas fa-user-times mx-2 fa-1x "></i></a>
+          <li class="nav-item">
+            <a class="nav-link" href="login.php"><i class="fas fa-user fa-2x"></i></a>
           </li>
         </ul>
       </div>
@@ -83,19 +65,34 @@ include "validar.php";
 
           include "conexao.php";
 
-          $iddAdm = $_POST['iddAdm'];
-          $nomeAdm = $_POST['nomeAdm'];
-          $funcao = $_POST['funcao'];
+          $endereco = $_POST['endereco'];
+          $cidade = $_POST['cidade'];
+          $data = $_POST['data'];
+          $cep = $_POST['cep'];
+          $nomeLocal = $_POST['nomeLocal'];
+          $agressor = $_POST['agressor'];
+          $detalhes = $_POST['detalhes'];
+          $tipo_crime_d = $_POST['tipo_crime_d'];
+          $tipo_denuncia_d = $_POST['tipo_denuncia_d'];
+          $tipo_violencia_d = $_POST['tipo_violencia_d'];
+          $midia = $_FILES['midia'];
+          $nome_midia =  renomear_foto($midia);
+          if ($nome_midia == 0) {
+            $nome_midia = null;
+          }
 
 
 
-          $sql = "UPDATE `administrador` set `nomeAdm` = '$nomeAdm',  `funcao` = '$funcao'  WHERE idAdm = $iddAdm";
+          $sql = "INSERT INTO `denuncia` ( `endereco`, `cidade`, `data`, `cep`, `nomeLocal`, `agressor`, `detalhes`, `tipo_crime_d`, `tipo_denuncia_d`, `tipo_violencia_d`, `midia`) VALUES ('$endereco','$cidade','$data','$cep', '$nomeLocal', '$agressor', '$detalhes', '$tipo_crime_d', '$tipo_denuncia_d', '$tipo_violencia_d', '$nome_midia')";
+
 
           if(mysqli_query($conn, $sql)){
-            mensagem("Alteração feita com sucesso!", 'success');
+            
+            mensagem("Denúncia feita com sucesso!", 'success');
 
           } else
-            mensagem("Erro ", 'danger');
+          
+            mensagem("Erro no cadastro da denúncia!", 'danger');
 
         ?>
 
@@ -103,10 +100,12 @@ include "validar.php";
       <div class="row">
         <div class="col-6"></div>
         <div class="col-6 text-end mt-2">
-          <a href="crud_administrador.php" class="btn btn-dark">Retornar</a>
+
+          <a href="index.php" class="btn btn-dark">Retornar</a>
         </div>
       </div>
-    </div>
+
+  </div>
 
 
   

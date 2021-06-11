@@ -44,7 +44,7 @@ include "validar.php";
       }
 
     </style>
- 
+
     <title>Administrador - DENÚNCIA ANÔNIMA</title>
   </head>
   <body>
@@ -80,8 +80,8 @@ include "validar.php";
         <?php
 
           include "conexao.php";
-
-          $iddAdm = $_GET['idAdm'] ?? '';
+          
+          $iddAdm = $_SESSION['emailLogin'];
 
           $sql = "SELECT * FROM administrador WHERE idAdm = $iddAdm";
 
@@ -99,22 +99,31 @@ include "validar.php";
   <div class="container">
     <div class="row">   
       <div class="col-10">
-        <h3 class="p-5 text-muted">Alterar Dados do Administrador</h3>
+        <h3 class="p-5 text-muted">Gerenciar Perfil de Administrador</h3>
       </div>
       <div class="col-2 p-5">
-        <a href="crud_administrador.php" class="btn btn-dark">Retornar</a>
+        <a href="adm.php" class="btn btn-dark">Retornar</a>
       </div>
     </div>
-      <form class="p-3 mt-4" action="editar_administrador_scripts.php" method="POST" >
+      <form class="p-3 mt-4 text-muted" action="editar_perfil_scripts.php" method="POST" >
       <div class="form-row">
-        <div class="form-group">
+        <div class="form-group pt-1">
           <label class="form-label" for="nomeAdm">Nome</label>
           <input type="text" class="form-control text-muted" name="nomeAdm" required value="<?php echo $linha['nomeAdm']; ?>">
         </div>
-        <div class="form-group">
+        <div class="form-group pt-1">
           <label class="form-label" for="funcao">Função</label>
           <input type="text" class="form-control text-muted" name="funcao" required value="<?php echo $linha['funcao']; ?>">
         </div>   
+        <div class="form-group pt-1">
+          <label class="form-label text-muted" for="emailAdm">E-mail</label>
+          <input type="email" class="form-control text-muted" name="emailAdm" required value="<?php echo $linha['emailAdm']; ?>">
+        </div>
+        <div class="form-group pt-1">
+          <label class="form-label text-muted" for="senha1">Senha</label>
+          <input type="password" class="form-control text-muted" name="senha1" placeholder="Nova senha">
+          <input type="hidden" name="senha" value="<?php echo $linha['senha']; ?>">
+        </div>
       </div>
         <div class="row">
           <div class="col-6 text-center mt-3">
